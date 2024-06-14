@@ -29,6 +29,52 @@ git clone https://github.com/Naga-Manohar-Y/GitHub-Examples.git
 
 cd GitHub-Examples
 ```
+> You'll need to generate a Personal Access Token (PAT) 
+https://github.com/settings/token
+
+You will use the PAT as your password when you login.
+
+Give it access to Contents for Commits
+
+### SSH
+```sh
+git clone git@github.com:andrew-wc-brown/Github-Examples.git
+cd GitHub-Examples
+```
+We will need to create our own SSH rsa key pair
+```sh
+sshe-keygen -t rsa
+```
+For WSL users and if you crete a non default key you might need to add it
+
+```sh
+eval `ssh-agent`
+ssh-add /home/andrew/.ssh/alt-github_id_rsa
+```
+We can test our connection here:
+
+```sh
+ssh -T git@github.com
+```
+
+### GitHub CLI
+
+Install the CLI
+
+eg. Linux (Ubuntu)
+
+```sh
+type -p curl >/dev/null || (sudo apt update && sudo apt install curl -y)
+curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg | sudo dd of=/usr/share/keyrings/githubcli-archive-keyring.gpg \
+&& sudo chmod go+r /usr/share/keyrings/githubcli-archive-keyring.gpg \
+&& echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main" | sudo tee /etc/apt/sources.list.d/github-cli.list > /dev/null \
+&& sudo apt update \
+&& sudo apt install gh -y
+```
+```sh
+gh auth login
+gh repo clone Naga-Manohar-Y/GitHub-Examples
+```
 
 ## Commits
 
